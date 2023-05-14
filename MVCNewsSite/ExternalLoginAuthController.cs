@@ -16,29 +16,27 @@ public class ExternalLoginAuthController : ControllerBase
         _httpClient = httpClientFactory.CreateClient();
     }
 
-
     [HttpPost]
-    public async Task<IActionResult> HandleExternalLogin([FromBody] ExternalLoginToken token)
+    public async Task<IActionResult> HandleExternalLogin()
     {
+        // Retrieve the token from the form data
+        var token = Request.Form["Token"];
+
+        
+
         // Validate the JWT token
         var tokenHandler = new JwtSecurityTokenHandler();
         var validationParameters = new TokenValidationParameters
         {
-            ValidateIssuer = true,
-            ValidIssuer = "google", // Replace with the actual issuer value
-            ValidateAudience = true,
-            ValidAudience = "627736457817-r1285kn2vekomu4jb4967delhg3n5dr4.apps.googleusercontent.com", // Replace with the actual audience value
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKeys = await GetSigningKeysAsync() // Replace with the actual signing key retrieval logic
+            // Validation parameters configuration
         };
 
         ClaimsPrincipal claimsPrincipal;
 
         try
         {
-            claimsPrincipal = tokenHandler.ValidateToken(token.Token, validationParameters, out _);
+            claimsPrincipal = tokenHandler.ValidateToken(token, validationParameters, out _);
         }
-
         catch (SecurityTokenException)
         {
             return BadRequest("Invalid token");

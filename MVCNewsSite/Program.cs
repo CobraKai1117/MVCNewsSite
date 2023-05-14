@@ -70,6 +70,8 @@ builder.Services.AddAntiforgery(options =>
 
 });
 
+builder.Services.AddHttpClient();
+
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     options.CheckConsentNeeded = context => true;

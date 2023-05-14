@@ -113,7 +113,7 @@ namespace MVCNewsSite.Areas.Identity.Pages.Account
 
         }
 
-        public IActionResult OnPost(string provider, string returnUrl = null) // This is for Registering with an external provider such as Google
+        public IActionResult OnPost(string provider = "Google", string returnUrl = null) // This is for Registering with an external provider such as Google
         {
             // Request a redirect to the external login provider.
             var redirectUrl = Url.Page("./ExternalLogin", pageHandler: "Callback", values: new { returnUrl });
