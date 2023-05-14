@@ -55,6 +55,10 @@ builder.Services.AddRazorPages().AddRazorPagesOptions(o =>
     o.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute());
 });
 
+builder.Services.AddControllers();
+
+
+
 
 
 
