@@ -4,6 +4,8 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using System.Text.Json;
+using Microsoft.AspNetCore.Http.HttpResults;
+using NuGet.Common;
 
 [ApiController]
 [Route("api/[controller]/{id}")]
@@ -20,7 +22,9 @@ public class ExternalLoginAuthController : ControllerBase
     public async Task<IActionResult> HandleExternalLogin()
     {
         // Retrieve the token from the form data
-        var token = Request.Form["Token"];
+        var token = Request.Form["credential"].ToString();
+
+        
 
         
 
@@ -28,14 +32,22 @@ public class ExternalLoginAuthController : ControllerBase
         var tokenHandler = new JwtSecurityTokenHandler();
         var validationParameters = new TokenValidationParameters
         {
+            ValidateIssuer = true,
+            ValidIssuer = "https://accounts.google.com",
+            ValidateAudience = true,
+            ValidAudience = "627736457817-r1285kn2vekomu4jb4967delhg3n5dr4.apps.googleusercontent.com"
             // Validation parameters configuration
         };
 
+        
+
         ClaimsPrincipal claimsPrincipal;
+
+        SecurityToken secureToken;
 
         try
         {
-            claimsPrincipal = tokenHandler.ValidateToken(token, validationParameters, out _);
+            claimsPrincipal = tokenHandler.ValidateToken(token, validationParameters, out secureToken);
         }
         catch (SecurityTokenException)
         {
