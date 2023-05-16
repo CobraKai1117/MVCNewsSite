@@ -24,6 +24,10 @@ public class ExternalLoginAuthController : ControllerBase
         // Retrieve the token from the form data
         var token = Request.Form["credential"].ToString();
 
+        //JwtSecurityToken test = new JwtSecurityToken();
+
+       // test.Issuer = token.
+
         
 
         
@@ -43,7 +47,14 @@ public class ExternalLoginAuthController : ControllerBase
 
         ClaimsPrincipal claimsPrincipal;
 
+        //SecurityToken secureToken;
+
+        JwtSecurityToken returnedToken;
+
+        returnedToken = tokenHandler.ReadJwtToken(token);
+
         SecurityToken secureToken;
+
 
         try
         {
@@ -88,3 +99,4 @@ public class ExternalLoginToken
 {
     public string Token { get; set; }
 }
+
