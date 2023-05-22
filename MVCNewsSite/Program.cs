@@ -29,25 +29,11 @@ builder.Services.AddAuthentication().AddGoogle(googleOptions =>
     googleOptions.CorrelationCookie.Domain = "localhost";
     googleOptions.CorrelationCookie.SecurePolicy = CookieSecurePolicy.Always;
     googleOptions.CorrelationCookie.SameSite = SameSiteMode.None;
-    googleOptions.CallbackPath = "/signin-google";
+    googleOptions.CallbackPath = "/signin-google"; 
 
 
 
 });
-
-/*.AddJwtBearer(options =>
-{
-options.TokenValidationParameters = new TokenValidationParameters
-{
-    ValidateIssuer = true,
-    ValidateAudience = true,
-    ValidateIssuerSigningKey = true,
-    ValidIssuer = "https://localhost:7051",
-    ValidAudience = "https://localhost:7051",
-    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@1"))
-};
-
-}); */
 
 
 builder.Services.AddRazorPages().AddRazorPagesOptions(o =>
@@ -56,9 +42,6 @@ builder.Services.AddRazorPages().AddRazorPagesOptions(o =>
 });
 
 builder.Services.AddControllers();
-
-
-
 
 
 
