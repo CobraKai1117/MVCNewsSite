@@ -113,7 +113,7 @@ namespace MVCNewsSite.Areas.Identity.Pages.Account
 
         }
 
-        public IActionResult OnPost(string provider = "Google", string returnUrl = null) // This is for Registering with an external provider such as Google
+        public IActionResult OnPost(string provider = "Google", string returnUrl = null, string token = null) // This is for Registering with an external provider such as Google
         {
             // Request a redirect to the external login provider.
             var redirectUrl = Url.Page("./ExternalLogin", pageHandler: "Callback", values: new { returnUrl });
@@ -121,8 +121,9 @@ namespace MVCNewsSite.Areas.Identity.Pages.Account
 
            
             //redirectUrl);
-            return new ChallengeResult(provider, properties);
+            return new ChallengeResult(provider, properties); // DON'T NEED THIS METHOD IN EXTERNAL AUTHENTICATION
         }
+
 
 
         public async Task<IActionResult> OnPostCallbackAsync(string returnUrl = null)
