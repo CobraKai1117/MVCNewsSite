@@ -2,10 +2,10 @@
 {
     public class NewsArticle
     {
-        private string _description;
-        private string _articleUrl;
-        private string _imageUrl;
-        private string datePublished;
+        public string description { get; set; }
+        public string url { get; set; }
+        public string urlToImage { get; set; }
+        public string publishedAt { get; set; }
 
 
 

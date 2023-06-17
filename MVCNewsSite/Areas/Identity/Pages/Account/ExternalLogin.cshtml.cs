@@ -228,6 +228,7 @@ public async Task<IActionResult> OnGetCallbackAsync(string returnUrl = null, str
             if (result.Succeeded)
             {
                 _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
+                returnUrl = "/News/";
                 return LocalRedirect(returnUrl);
             }
             if (result.IsLockedOut)
@@ -295,7 +296,7 @@ public async Task<IActionResult> OnGetCallbackAsync(string returnUrl = null, str
                 {
                     Input = new InputModel
                     {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)  // THIS IS RETRIEVING THE GOOGLE EMAIL EVEN THOUGH I HAVEN'T ENTERED IT
+                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)  
                     };
                 }
                 return Page();
