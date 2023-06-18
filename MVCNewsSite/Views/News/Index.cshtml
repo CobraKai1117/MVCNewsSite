@@ -3,13 +3,14 @@
     {
         <div class="article-container">
             <div class="image-container">
-                <img src="@article.urlToImage" alt="Article Image" class="image-responsive">
+                <img src="@article.urlToImage" alt="Article Image" class="image-responsive" style="max-width:50%; height:auto;">
             </div>
             <div class="article-details">
-                <h3>@article.title</h3>
-                <p>@article.publishedAt</p>
-                <p>@article.description</p>
-                <a href="@article.url" target="_blank">Read More</a>
+                <h3 style="font-size:20px;">@article.title</h3>
+                <p>@article.publishedAt.ToString("d")</p>
+                <p style="font-size:14px;">@article.description</p>
+                <a href="@article.url" target="_blank" style="padding-top:5px; display: block; margin-top: 0px;">Read More</a>
+                <br>
             </div>
         </div>
     }
