@@ -1,0 +1,21 @@
+﻿<div class="main-container">
+    @foreach (var article in Model)
+    {
+        <div class="article-container">
+            <div class="image-container">
+                <img src="@article.urlToImage" alt="Article Image" class="image-responsive">
+            </div>
+            <div class="article-details">
+                <h3>@article.title</h3>
+                <p>@article.publishedAt</p>
+                <p>@article.description</p>
+                <a href="@article.url" target="_blank">Read More</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+
