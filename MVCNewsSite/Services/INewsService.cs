@@ -5,9 +5,9 @@ namespace MVCNewsSite.Services
     public interface INewsService
     {
 
-        Task<List<NewsArticle>> GetCurrentNews(string country, string apiKey);
+        Task<List<NewsArticle>> GetCurrentNewsByCountry(string country, string apiKey);
 
-        Task<List<NewsArticle>> GetTopicalNews(string category, string apiKey);
+        Task<List<NewsArticle>> GetTopicalNews(string country, string category, string apiKey);
 
 
     }

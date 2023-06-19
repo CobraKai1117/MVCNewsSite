@@ -8,6 +8,9 @@ namespace MVCNewsSite.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        
+
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -15,11 +18,15 @@ namespace MVCNewsSite.Controllers
 
         public IActionResult Index()
         {
+            string section = (string)RouteData.Values["controller"];
+            ViewBag.Section = section;
             return View();
         }
 
         public IActionResult Privacy()
         {
+            string section = (string)RouteData.Values["controller"];
+            ViewBag.Section = section;
             return View();
         }
 

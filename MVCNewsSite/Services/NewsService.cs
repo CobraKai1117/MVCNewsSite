@@ -15,7 +15,7 @@ namespace MVCNewsSite.Services
             _httpClient = new HttpClient() { BaseAddress = new Uri("https://newsapi.org/") };
         }
 
-        public async Task<List<NewsArticle>> GetCurrentNews(string country, string apiKey)
+        public async Task<List<NewsArticle>> GetCurrentNewsByCountry(string country, string apiKey)
         {
             try
             {
@@ -50,19 +50,24 @@ namespace MVCNewsSite.Services
             }
         }
 
-        public async Task<List<NewsArticle>> GetTopicalNews(string category, string apiKey)
+        public async Task<List<NewsArticle>> GetTopicalNews(string country, string category, string apiKey)
         {
-            var url = string.Format("v2/top-headlines/sources?category={0}&apiKey={1}", category, apiKey);
+            var url = $"v2/top-headlines?country={country}&category={category}&apiKey={apiKey}";
+
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Add("User-Agent", "YourApplicationName");
+
+
+            var response = await _httpClient.SendAsync(request);
+
             var result = new List<NewsArticle>();
-            var response = await _httpClient.GetAsync(url);
+
             var sResponse = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
             {
                 var stringResponse = await response.Content.ReadAsStringAsync();
-                result = JsonSerializer.Deserialize<List<NewsArticle>>(stringResponse);
+                result = JsonSerializer.Deserialize<NewsModel>(stringResponse).articles;
             }
             else
             {
