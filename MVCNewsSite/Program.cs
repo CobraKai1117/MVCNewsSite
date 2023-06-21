@@ -12,6 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
 
+var config = new AppConfiguration();
+config.ApiKey = configuration["ApiKey"];
+builder.Services.AddSingleton<AppConfiguration>(config);
+
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
