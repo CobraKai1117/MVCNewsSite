@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MVCNewsSite.Models;
 using MVCNewsSite.Services;
-
+using System.Diagnostics;
 
 namespace MVCNewsSite.Controllers
 {
     public class NewsController : Controller
     {
+        private readonly ILogger<NewsController> _logger;
+
         private readonly INewsService _newsService;
         AppConfiguration _config;
         public string Country { get; set; }
@@ -15,15 +16,19 @@ namespace MVCNewsSite.Controllers
 
         public string Section { get; set; }
 
-        public NewsController(INewsService newsService,AppConfiguration config) 
+        
+        public NewsController(INewsService newsService, AppConfiguration config, ILogger<NewsController>logger)
         {
             _newsService = newsService;
             this._config = config;
-            
+
 
         }
 
-        public async Task<IActionResult> Index() 
+        [Route("", Name ="News")]
+        [Route("News")]
+        [Route("News/Home")]
+        public async Task<IActionResult> Index()
         {
             List<NewsArticle> newsArticles = new List<NewsArticle>();
 
@@ -32,15 +37,15 @@ namespace MVCNewsSite.Controllers
             string section = (string)RouteData.Values["controller"];
             ViewBag.Section = section;
 
-            
+
 
             newsArticles = await _newsService.GetCurrentNewsByCountry(Country, this._config.ApiKey);
 
-            return View("Index",newsArticles);
-        
+            return View("Index", newsArticles);
+
         }
 
-        public async Task<IActionResult> Sports() 
+        public async Task<IActionResult> Sports()
         {
 
             List<NewsArticle> newsArticles = new List<NewsArticle>();
@@ -51,7 +56,7 @@ namespace MVCNewsSite.Controllers
 
             newsArticles = await _newsService.GetTopicalNews(Country, Category, this._config.ApiKey);
 
-            return View("Index",newsArticles);
+            return View("Index", newsArticles);
 
         }
 
@@ -130,5 +135,17 @@ namespace MVCNewsSite.Controllers
 
         }
 
+        public IActionResult Privacy()
+        {
+            string section = (string)RouteData.Values["controller"];
+            ViewBag.Section = section;
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }

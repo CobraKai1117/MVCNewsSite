@@ -1,4 +1,14 @@
-﻿<div class="main-container">
+﻿@{
+    ViewData["Title"] = "Home Page";
+    @if (TempData["StatusMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["StatusMessage"]
+        </div>
+    }
+
+}
+<div class="main-container">
     @foreach (var article in Model)
     {
         <div class="article-container">
@@ -15,12 +25,5 @@
         </div>
     }
 </div>
-
-
-
-
-
-
-
 
 
