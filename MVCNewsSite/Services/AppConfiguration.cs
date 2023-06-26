@@ -5,6 +5,8 @@ namespace MVCNewsSite.Services
     public class AppConfiguration
     {
         public string ApiKey { get; set; }
+
+        public string weatherApiKey { get; set; }
        
 
     }

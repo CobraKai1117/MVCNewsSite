@@ -2,6 +2,7 @@
 using MVCNewsSite.Models;
 using MVCNewsSite.Services;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace MVCNewsSite.Controllers
 {
@@ -10,17 +11,29 @@ namespace MVCNewsSite.Controllers
         private readonly ILogger<NewsController> _logger;
 
         private readonly INewsService _newsService;
+
+        private readonly IWeatherService _weatherService;
+
+        List<NewsArticle> newsArticles;
+
+        LocationModel currentWeather;
+
         AppConfiguration _config;
         public string Country { get; set; }
         public string Category { get; set; }
 
         public string Section { get; set; }
 
-        
-        public NewsController(INewsService newsService, AppConfiguration config, ILogger<NewsController>logger)
+        string[] userLocalConfigs = new string[2];
+
+
+        public NewsController(INewsService newsService, IWeatherService weatherService, AppConfiguration config, ILogger<NewsController>logger)
         {
             _newsService = newsService;
+            _weatherService = weatherService;
             this._config = config;
+            userLocalConfigs = getCountryInformation();
+            Country = userLocalConfigs[1];
 
 
         }
@@ -30,12 +43,13 @@ namespace MVCNewsSite.Controllers
         [Route("News/Home")]
         public async Task<IActionResult> Index()
         {
-            List<NewsArticle> newsArticles = new List<NewsArticle>();
+             newsArticles = new List<NewsArticle>();
 
-            Country = "us";
-
+         
             string section = (string)RouteData.Values["controller"];
             ViewBag.Section = section;
+
+            currentWeather = await _weatherService.GetWeatherByLocationAsync("/current.json", this._config.weatherApiKey,"45","90");
 
 
 
@@ -48,10 +62,9 @@ namespace MVCNewsSite.Controllers
         public async Task<IActionResult> Sports()
         {
 
-            List<NewsArticle> newsArticles = new List<NewsArticle>();
+            newsArticles = new List<NewsArticle>();
             Section = (string)RouteData.Values["controller"];
             Category = (string)RouteData.Values["action"].ToString().ToLower();
-            Country = "us";
             ViewBag.Section = Section;
 
             newsArticles = await _newsService.GetTopicalNews(Country, Category, this._config.ApiKey);
@@ -63,10 +76,9 @@ namespace MVCNewsSite.Controllers
         public async Task<IActionResult> Science()
         {
 
-            List<NewsArticle> newsArticles = new List<NewsArticle>();
+            newsArticles = new List<NewsArticle>();
             Section = (string)RouteData.Values["controller"];
             Category = (string)RouteData.Values["action"].ToString().ToLower();
-            Country = "us";
             ViewBag.Section = Section;
 
             newsArticles = await _newsService.GetTopicalNews(Country, Category, this._config.ApiKey);
@@ -78,10 +90,9 @@ namespace MVCNewsSite.Controllers
         public async Task<IActionResult> Health()
         {
 
-            List<NewsArticle> newsArticles = new List<NewsArticle>();
+            newsArticles = new List<NewsArticle>();
             Section = (string)RouteData.Values["controller"];
             Category = (string)RouteData.Values["action"].ToString().ToLower();
-            Country = "us";
             ViewBag.Section = Section;
 
             newsArticles = await _newsService.GetTopicalNews(Country, Category, this._config.ApiKey);
@@ -93,10 +104,9 @@ namespace MVCNewsSite.Controllers
         public async Task<IActionResult> Technology()
         {
 
-            List<NewsArticle> newsArticles = new List<NewsArticle>();
+            newsArticles = new List<NewsArticle>();
             Section = (string)RouteData.Values["controller"];
             Category = (string)RouteData.Values["action"].ToString().ToLower();
-            Country = "us";
             ViewBag.Section = Section;
 
             newsArticles = await _newsService.GetTopicalNews(Country, Category, this._config.ApiKey);
@@ -108,10 +118,10 @@ namespace MVCNewsSite.Controllers
         public async Task<IActionResult> Entertainment()
         {
 
-            List<NewsArticle> newsArticles = new List<NewsArticle>();
+            newsArticles = new List<NewsArticle>();
             Section = (string)RouteData.Values["controller"];
             Category = (string)RouteData.Values["action"].ToString().ToLower();
-            Country = "us";
+            Country = userLocalConfigs[1];
             ViewBag.Section = Section;
 
             newsArticles = await _newsService.GetTopicalNews(Country, Category, this._config.ApiKey);
@@ -123,10 +133,10 @@ namespace MVCNewsSite.Controllers
         public async Task<IActionResult> Business()
         {
 
-            List<NewsArticle> newsArticles = new List<NewsArticle>();
+            newsArticles = new List<NewsArticle>();
             Section = (string)RouteData.Values["controller"];
             Category = (string)RouteData.Values["action"].ToString().ToLower();
-            Country = "us";
+            Country = userLocalConfigs[1];
             ViewBag.Section = Section;
 
             newsArticles = await _newsService.GetTopicalNews(Country, Category, this._config.ApiKey);
@@ -146,6 +156,16 @@ namespace MVCNewsSite.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public string[] getCountryInformation() // Gets the users country and language 
+        {
+
+            string currentLanguage = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            string currentCountry = CultureInfo.CurrentCulture.Name.Substring(3, 2).ToLower();
+            string[] locationInformation = new string[] { currentLanguage, currentCountry };
+            return locationInformation;
+
         }
     }
 }

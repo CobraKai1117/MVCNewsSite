@@ -3,12 +3,15 @@ using Microsoft.Build.Framework;
 using MVCNewsSite.Models;
 using System.Net.Http;
 using System.Text.Json;
+using System.Globalization;
 
 namespace MVCNewsSite.Services
 {
     public class NewsService: INewsService
     {
         private static HttpClient _httpClient;
+
+
         static NewsService() 
         {
 
@@ -17,6 +20,8 @@ namespace MVCNewsSite.Services
 
         public async Task<List<NewsArticle>> GetCurrentNewsByCountry(string country, string apiKey)
         {
+            
+
             try
             {
                 var url = $"v2/top-headlines?country={country}&apiKey={apiKey}";
@@ -31,6 +36,9 @@ namespace MVCNewsSite.Services
                 if (response.IsSuccessStatusCode)
                 {
                     string stringResponse = await response.Content.ReadAsStringAsync();
+
+                    CultureInfo[] test = CultureInfo.GetCultures(CultureTypes.AllCultures);
+                   
                     result = JsonSerializer.Deserialize<NewsModel>(stringResponse).articles;
                 }
                 else
@@ -52,6 +60,8 @@ namespace MVCNewsSite.Services
 
         public async Task<List<NewsArticle>> GetTopicalNews(string country, string category, string apiKey)
         {
+            //Language = getCountryInformation();
+            
             var url = $"v2/top-headlines?country={country}&category={category}&apiKey={apiKey}";
 
             var request = new HttpRequestMessage(HttpMethod.Get, url);
@@ -81,6 +91,15 @@ namespace MVCNewsSite.Services
         }
 
 
+        public string[] getCountryInformation() // Gets the users country and language 
+        {
+
+            string currentLanguage = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            string currentCountry = CultureInfo.CurrentCulture.Name.Substring(3, 2).ToLower();
+            string[] locationInformation = new string[] { currentLanguage, currentCountry };
+            return locationInformation;
+        
+        }
 
     }
 }

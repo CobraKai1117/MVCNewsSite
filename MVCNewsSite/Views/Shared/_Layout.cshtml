@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MVCNewsSite.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
@@ -17,7 +18,21 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
 
 
+            <script>
+                var x = document.getElementById("demo");
+                function getLocation() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(showPosition);
+                    } else {
+                        x.innerHTML = "Geolocation is not supported by this browser.";
+                    }
+                }
 
+                function showPosition(position) {
+                    x.innerHTML = "Latitude: " + position.coords.latitude +
+                        "<br>Longitude: " + position.coords.longitude;
+                }
+            </script>
 
                 
                 <div class="container-fluid">
@@ -59,7 +74,30 @@
                         </li>
 
 
-                        <li style="white-space:nowrap;"  class="nav-link text-dark nav-item"> Search <br> </li>
+
+                        <div class="nav-item dropdown">
+                            <span class="nav-item">Languages</span>
+                            <div class="dropdown-content">
+                                <ul class="dd-menu">
+                                    <li class="dd-menu-item">English</li>
+                                    <li class="dd-menu-item">French</li>
+                                    <li class="dd-menu-item">Spanish</li>
+                                    <li class="dd-menu-item">Arabic</li>
+                                    <li class="dd-menu-item">German</li>
+                                    <li class="dd-menu-item">Hebrew</li>
+                                    <li class="dd-menu-item">Italian</li>
+                                    <li class="dd-menu-item">Dutch</li>
+                                    <li class="dd-menu-item">Norwegian</li>
+                                    <li class="dd-menu-item">Portuguese</li>
+                                    <li class="dd-menu-item">Russian</li>
+                                    <li class="dd-menu-item">Swedish</li>
+                                    <li class="dd-menu-item">Chinese</li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <li style="white-space:nowrap; font-size:20px"  class="nav-link text-dark "> Search <br> </li>
 
                         <li class="nav-link text-dark"><input type="text" name="articleSearch" value="" /> </li>
 

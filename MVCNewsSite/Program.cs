@@ -15,6 +15,7 @@ var configuration = builder.Configuration;
 
 var config = new AppConfiguration();
 config.ApiKey = configuration["ApiKey"];
+config.weatherApiKey = configuration["WeatherApiKey"];
 builder.Services.AddSingleton<AppConfiguration>(config);
 
 // Add services to the container.
@@ -53,6 +54,7 @@ builder.Services.AddRazorPages().AddRazorPagesOptions(o =>
 
 builder.Services.AddControllers();
 builder.Services.AddSingleton<INewsService, NewsService>();
+builder.Services.AddSingleton<IWeatherService, WeatherService>();
 
 
 
