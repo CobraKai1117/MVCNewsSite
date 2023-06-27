@@ -8,6 +8,7 @@ using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using MVCNewsSite.Services;
 using Microsoft.AspNetCore.Routing.Patterns;
+using MaxMind.GeoIP2;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,6 +57,8 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<INewsService, NewsService>();
 builder.Services.AddSingleton<IWeatherService, WeatherService>();
 
+builder.Services.AddHttpClient<WebServiceClient>();
+
 
 
 builder.Services.AddAntiforgery(options =>
@@ -65,6 +68,8 @@ builder.Services.AddAntiforgery(options =>
 
 
 });
+
+builder.Services.Configure<WebServiceClientOptions>(configuration.GetSection("MaxMind"));
 
 builder.Services.AddHttpClient();
 

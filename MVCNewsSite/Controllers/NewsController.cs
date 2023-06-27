@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MaxMind.GeoIP2;
+using Microsoft.AspNetCore.Mvc;
 using MVCNewsSite.Models;
 using MVCNewsSite.Services;
 using System.Diagnostics;
@@ -14,6 +15,8 @@ namespace MVCNewsSite.Controllers
 
         private readonly IWeatherService _weatherService;
 
+        private readonly WebServiceClient _maxMindClient;
+
         List<NewsArticle> newsArticles;
 
         LocationModel currentWeather;
@@ -27,10 +30,11 @@ namespace MVCNewsSite.Controllers
         string[] userLocalConfigs = new string[2];
 
 
-        public NewsController(INewsService newsService, IWeatherService weatherService, AppConfiguration config, ILogger<NewsController>logger)
+        public NewsController(INewsService newsService, IWeatherService weatherService, AppConfiguration config, ILogger<NewsController>logger, WebServiceClient maxMindClient)
         {
             _newsService = newsService;
             _weatherService = weatherService;
+            _maxMindClient = maxMindClient;
             this._config = config;
             userLocalConfigs = getCountryInformation();
             Country = userLocalConfigs[1];
@@ -38,12 +42,20 @@ namespace MVCNewsSite.Controllers
 
         }
 
+        
         [Route("", Name ="News")]
         [Route("News")]
         [Route("News/Home")]
-        public async Task<IActionResult> Index()
+        
+        
+        public async Task<IActionResult> Index(string latitude,string longitude)
         {
              newsArticles = new List<NewsArticle>();
+
+            //var location = await _maxMindClient.CountryAsync();
+
+            string test1 = latitude;
+            string test2 = longitude;
 
          
             string section = (string)RouteData.Values["controller"];
@@ -58,8 +70,8 @@ namespace MVCNewsSite.Controllers
             return View("Index", newsArticles);
 
         }
-
-        public async Task<IActionResult> Sports()
+       
+        public async Task<IActionResult> Sports(double latitude, double longitude)
         {
 
             newsArticles = new List<NewsArticle>();
@@ -68,6 +80,8 @@ namespace MVCNewsSite.Controllers
             ViewBag.Section = Section;
 
             newsArticles = await _newsService.GetTopicalNews(Country, Category, this._config.ApiKey);
+
+            currentWeather = await _weatherService.GetWeatherByLocationAsync("/current.json", this._config.weatherApiKey, "45", "90");
 
             return View("Index", newsArticles);
 
