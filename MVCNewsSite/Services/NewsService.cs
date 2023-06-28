@@ -91,6 +91,54 @@ namespace MVCNewsSite.Services
         }
 
 
+        public async Task<List<NewsArticle>> GetNewsBySearch(string queryParameter,string apiKey)
+        {
+            //Language = getCountryInformation();
+
+            var url = $"v2/everything?q={queryParameter}&apiKey={apiKey}";
+
+            var request = new HttpRequestMessage(HttpMethod.Get, url);
+            request.Headers.Add("User-Agent", "YourApplicationName");
+
+
+            var response = await _httpClient.SendAsync(request);
+
+            var result = new List<NewsArticle>();
+
+            var sResponse = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                var stringResponse = await response.Content.ReadAsStringAsync();
+                result = JsonSerializer.Deserialize<NewsModel>(stringResponse).articles;
+            }
+            else
+            {
+                Console.WriteLine($"Response status code: {response.StatusCode}");
+                System.Diagnostics.Debug.WriteLine($"Status Code: {response.StatusCode}");
+                System.Diagnostics.Debug.WriteLine($"Response Body: {sResponse}");
+                throw new HttpRequestException($"The API request failed with status code {response.StatusCode}");
+            }
+
+            return result;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public string[] getCountryInformation() // Gets the users country and language 
         {
 

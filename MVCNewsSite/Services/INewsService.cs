@@ -9,6 +9,7 @@ namespace MVCNewsSite.Services
 
         Task<List<NewsArticle>> GetTopicalNews(string country, string category, string apiKey);
 
+        Task<List<NewsArticle>> GetNewsBySearch(string queryParameter,string apiKey);
 
     }
 

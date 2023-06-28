@@ -8,6 +8,8 @@
         public string urlToImage { get; set; }
         public DateTime publishedAt { get; set; }
 
+        //public string content { get; set; }
+
 
 
     }

@@ -159,6 +159,20 @@ namespace MVCNewsSite.Controllers
 
         }
 
+
+
+        public async Task<ActionResult> SearchForArticle(string query)
+        {
+
+            newsArticles = new List<NewsArticle>();
+            newsArticles = await _newsService.GetNewsBySearch(query, _config.ApiKey);
+
+            return View("Index", newsArticles);
+
+        }
+
+
+
         public IActionResult Privacy()
         {
             string section = (string)RouteData.Values["controller"];
@@ -181,5 +195,8 @@ namespace MVCNewsSite.Controllers
             return locationInformation;
 
         }
+
+
+
     }
 }

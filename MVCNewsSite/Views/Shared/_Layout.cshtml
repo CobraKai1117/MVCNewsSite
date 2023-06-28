@@ -106,11 +106,39 @@
 
                         <li style="white-space:nowrap; font-size:20px"  class="nav-link text-dark "> Search <br> </li>
 
-                        <li class="nav-link text-dark"><input type="text" name="articleSearch" value="" /> </li>
+                        <li class="nav-link text-dark"><input type="text" id="articleSearch" value="" /> </li>
 
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
+
+                <script>
+                    $(document).ready(function () {
+                        $('#articleSearch').on('input', function () {
+                            var query = $(this).val();
+                            if (query.length > 2) {
+                                clearTimeout($.data(this, 'timer'));
+                                var wait = setTimeout(searchNews, 500);
+                                $(this).data('timer', wait);
+                            } else {
+                                $('#searchResultsContainer').empty();
+                            }
+                        });
+
+                        function searchNews() {
+                            var query = $('#articleSearch').val();
+                            if (query.length > 2) {
+                                $.get('/News/SearchForArticle', { query: query }, function (data) {
+                                    $('#searchResultsContainer').html(data);
+                                });
+                            }
+                        }
+                    });
+                </script>
+
+
+
+
             </div>
             
             
