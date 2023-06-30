@@ -58,11 +58,11 @@ namespace MVCNewsSite.Services
             }
         }
 
-        public async Task<List<NewsArticle>> GetTopicalNews(string country, string category, string apiKey)
+        public async Task<List<NewsArticle>> GetTopicalNews(string language, string category, string apiKey)
         {
             //Language = getCountryInformation();
             
-            var url = $"v2/top-headlines?country={country}&category={category}&apiKey={apiKey}";
+            var url = $"v2/top-headlines?country={language}&category={category}&apiKey={apiKey}";
 
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Add("User-Agent", "YourApplicationName");
@@ -91,11 +91,11 @@ namespace MVCNewsSite.Services
         }
 
 
-        public async Task<List<NewsArticle>> GetNewsBySearch(string queryParameter,string apiKey)
+        public async Task<List<NewsArticle>> GetNewsBySearch(string language, string queryParameter,string apiKey)
         {
             //Language = getCountryInformation();
 
-            var url = $"v2/everything?q={queryParameter}&apiKey={apiKey}";
+            var url = $"v2/everything?language={language}&q={queryParameter}&apiKey={apiKey}";
 
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Add("User-Agent", "YourApplicationName");

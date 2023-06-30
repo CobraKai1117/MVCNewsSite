@@ -14,7 +14,11 @@
 </head>
 <body>
 
+    <div class="ultimate-container">
+
     <script src="~/js/GeoLocation.js"></script>
+
+
 
     <header>
 
@@ -40,8 +44,7 @@
                 }
             </script>
 
-            
-                
+
                 <div class="container-fluid">
                     <a class="navbar-brand" style="font-size:30px";  asp-area="" asp-controller="News" asp-action="Index">Red Rooster News</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -80,68 +83,18 @@
 
                         </li>
 
+                            <li class="nav-link text-dark"><input type="text" id="articleSearch" value="" /> &nbsp; <button class="articleSearchBtn"> Search </button> </li>
 
-
-                        <div class="nav-item dropdown">
-                            <span class="nav-item">Languages</span>
-                            <div class="dropdown-content">
-                                <ul class="dd-menu">
-                                    <li class="dd-menu-item">English</li>
-                                    <li class="dd-menu-item">French</li>
-                                    <li class="dd-menu-item">Spanish</li>
-                                    <li class="dd-menu-item">Arabic</li>
-                                    <li class="dd-menu-item">German</li>
-                                    <li class="dd-menu-item">Hebrew</li>
-                                    <li class="dd-menu-item">Italian</li>
-                                    <li class="dd-menu-item">Dutch</li>
-                                    <li class="dd-menu-item">Norwegian</li>
-                                    <li class="dd-menu-item">Portuguese</li>
-                                    <li class="dd-menu-item">Russian</li>
-                                    <li class="dd-menu-item">Swedish</li>
-                                    <li class="dd-menu-item">Chinese</li>
-
-                                </ul>
-                            </div>
-                        </div>
-
-                        <li style="white-space:nowrap; font-size:20px"  class="nav-link text-dark "> Search <br> </li>
-
-                        <li class="nav-link text-dark"><input type="text" id="articleSearch" value="" /> </li>
+                       
 
                     </ul>
+
+                        
+
                     <partial name="_LoginPartial" />
                 </div>
 
-                <script>
-                    $(document).ready(function () {
-                        $('#articleSearch').on('input', function () {
-                            var query = $(this).val();
-                            if (query.length > 2) {
-                                clearTimeout($.data(this, 'timer'));
-                                var wait = setTimeout(searchNews, 500);
-                                $(this).data('timer', wait);
-                            } else {
-                                $('#searchResultsContainer').empty();
-                            }
-                        });
-
-                        function searchNews() {
-                            var query = $('#articleSearch').val();
-                            if (query.length > 2) {
-                                $.get('/News/SearchForArticle', { query: query }, function (data) {
-                                    $('#searchResultsContainer').html(data);
-                                });
-                            }
-                        }
-                    });
-                </script>
-
-
-
-
             </div>
-            
-            
 
         </nav>
     </header>
@@ -153,12 +106,44 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Red Rooster News - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - Red Rooster News - <a asp-area="" asp-controller="News" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    </div>
+
+
+    <script>
+
+
+      $('.articleSearchBtn').click(function() {
+      var query = $('#articleSearch').val();
+      if(query.length > 2) {
+          $.get('/News/SearchForArticle',{query:query}, function (data) {
+              $('.ultimate-container').html(data);
+          })
+      }
+      
+      });
+
+      $('#articleSearch').on('keypress',function(e) {
+          if(e.which==13) {
+              var query = $('#articleSearch').val();
+              if(query.length > 2) {
+                  $.get('/News/SearchForArticle',{query:query},function(data) {
+                      $('.ultimate-container').html(data);
+                  })
+              }
+          }
+      });
+
+
+    </script>
+
+
+
 </body>
 </html>

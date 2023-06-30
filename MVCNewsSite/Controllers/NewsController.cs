@@ -25,7 +25,7 @@ namespace MVCNewsSite.Controllers
         public string Country { get; set; }
         public string Category { get; set; }
 
-        public string Section { get; set; }
+        public string Language { get; set; }
 
         string[] userLocalConfigs = new string[2];
 
@@ -38,6 +38,7 @@ namespace MVCNewsSite.Controllers
             this._config = config;
             userLocalConfigs = getCountryInformation();
             Country = userLocalConfigs[1];
+            Language = userLocalConfigs[0].ToLower();
 
 
         }
@@ -48,18 +49,12 @@ namespace MVCNewsSite.Controllers
         [Route("News/Home")]
         
         
-        public async Task<IActionResult> Index(string latitude,string longitude)
+        public async Task<IActionResult> Index()
         {
              newsArticles = new List<NewsArticle>();
 
             //var location = await _maxMindClient.CountryAsync();
 
-            string test1 = latitude;
-            string test2 = longitude;
-
-         
-            string section = (string)RouteData.Values["controller"];
-            ViewBag.Section = section;
 
             currentWeather = await _weatherService.GetWeatherByLocationAsync("/current.json", this._config.weatherApiKey,"45","90");
 
@@ -71,13 +66,12 @@ namespace MVCNewsSite.Controllers
 
         }
        
-        public async Task<IActionResult> Sports(double latitude, double longitude)
+        public async Task<IActionResult> Sports()
         {
 
             newsArticles = new List<NewsArticle>();
-            Section = (string)RouteData.Values["controller"];
             Category = (string)RouteData.Values["action"].ToString().ToLower();
-            ViewBag.Section = Section;
+            
 
             newsArticles = await _newsService.GetTopicalNews(Country, Category, this._config.ApiKey);
 
@@ -91,9 +85,8 @@ namespace MVCNewsSite.Controllers
         {
 
             newsArticles = new List<NewsArticle>();
-            Section = (string)RouteData.Values["controller"];
             Category = (string)RouteData.Values["action"].ToString().ToLower();
-            ViewBag.Section = Section;
+         
 
             newsArticles = await _newsService.GetTopicalNews(Country, Category, this._config.ApiKey);
 
@@ -105,9 +98,8 @@ namespace MVCNewsSite.Controllers
         {
 
             newsArticles = new List<NewsArticle>();
-            Section = (string)RouteData.Values["controller"];
             Category = (string)RouteData.Values["action"].ToString().ToLower();
-            ViewBag.Section = Section;
+            
 
             newsArticles = await _newsService.GetTopicalNews(Country, Category, this._config.ApiKey);
 
@@ -119,9 +111,8 @@ namespace MVCNewsSite.Controllers
         {
 
             newsArticles = new List<NewsArticle>();
-            Section = (string)RouteData.Values["controller"];
             Category = (string)RouteData.Values["action"].ToString().ToLower();
-            ViewBag.Section = Section;
+            
 
             newsArticles = await _newsService.GetTopicalNews(Country, Category, this._config.ApiKey);
 
@@ -133,10 +124,9 @@ namespace MVCNewsSite.Controllers
         {
 
             newsArticles = new List<NewsArticle>();
-            Section = (string)RouteData.Values["controller"];
             Category = (string)RouteData.Values["action"].ToString().ToLower();
             Country = userLocalConfigs[1];
-            ViewBag.Section = Section;
+            
 
             newsArticles = await _newsService.GetTopicalNews(Country, Category, this._config.ApiKey);
 
@@ -148,10 +138,9 @@ namespace MVCNewsSite.Controllers
         {
 
             newsArticles = new List<NewsArticle>();
-            Section = (string)RouteData.Values["controller"];
             Category = (string)RouteData.Values["action"].ToString().ToLower();
             Country = userLocalConfigs[1];
-            ViewBag.Section = Section;
+            
 
             newsArticles = await _newsService.GetTopicalNews(Country, Category, this._config.ApiKey);
 
@@ -160,18 +149,17 @@ namespace MVCNewsSite.Controllers
         }
 
 
-
-        public async Task<ActionResult> SearchForArticle(string query)
+        public async Task<ActionResult> SearchForArticle(string query, string language = "es")
         {
 
+            language = Language;
+            
             newsArticles = new List<NewsArticle>();
-            newsArticles = await _newsService.GetNewsBySearch(query, _config.ApiKey);
+            newsArticles = await _newsService.GetNewsBySearch(language, query, _config.ApiKey);
 
             return View("Index", newsArticles);
 
         }
-
-
 
         public IActionResult Privacy()
         {
