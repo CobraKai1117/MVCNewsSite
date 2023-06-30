@@ -111,6 +111,7 @@ namespace MVCNewsSite.Services
             {
                 var stringResponse = await response.Content.ReadAsStringAsync();
                 result = JsonSerializer.Deserialize<NewsModel>(stringResponse).articles;
+                
             }
             else
             {
