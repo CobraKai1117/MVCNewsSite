@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MVCNewsSite.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Layout.css" asp-append-version="true" />
+    <link href='https://fonts.googleapis.com/css?family=Allerta Stencil' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
@@ -45,45 +47,46 @@
             </script>
 
 
-                <div class="container-fluid">
-                    <a class="navbar-brand" style="font-size:30px";  asp-area="" asp-controller="News" asp-action="Index">Red Rooster News</a>
+                <div class="container-fluid"style="background-color:limegreen">
+                   
+                    <img src="~/Images/Red_Rooster.png" alt="Red Rooster Logo" style="width:8.33%; height:8.33%; float:left;" />&nbsp; <a class="navbar-brand" style="font-size:30px; font-family:'Allerta Stencil'; color:yellow" ; asp-area="" asp-controller="News" asp-action="Index">Red Rooster News</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" style="position:relative;top:0px" ;>
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="Sports">Sports</a>
+                        <li class="nav-item" id="text-topic">
+                            <a class="nav-link" id="text-topic"; style="color:yellow;" asp-area="" asp-controller="News" asp-action="Sports">Sports</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="Business">Business</a>
+                                <a class="nav-link" style="color:yellow;" style="color:yellow;" asp-area="" asp-controller="News" asp-action="Business">Business</a>
 
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="Entertainment"> Entertainment </a>
+                                <a class="nav-link" style="color:yellow;" asp-area="" asp-controller="News" asp-action="Entertainment"> Entertainment </a>
 
                         </li>
 
 
                             <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="Health"> Health </a>
+                                <a class="nav-link" style="color:yellow;" asp-area="" asp-controller="News" asp-action="Health"> Health </a>
 
                         </li>
 
                             <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="Science"> Science </a>
+                                <a class="nav-link" style="color:yellow;" asp-area="" asp-controller="News" asp-action="Science"> Science </a>
 
                         </li>
 
 
                             <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="Technology"> Technology </a>
+                                <a class="nav-link" style="color:yellow;"  asp-area="" asp-controller="News" asp-action="Technology"> Technology </a>
 
                         </li>
 
-                            <li class="nav-link text-dark"><input type="text" id="articleSearch" value="" /> &nbsp; <button class="articleSearchBtn"> Search </button> </li>
+                            <li ><input type="text" id="articleSearch" value="" style="margin-left:20px; margin-right:20px; margin-top:10px;" /> &nbsp; <button class="articleSearchBtn"> Search </button> </li>
 
                        
 
@@ -106,7 +109,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Red Rooster News - <a asp-area="" asp-controller="News" asp-action="Privacy">Privacy</a>
+         &copy; 2023 - Red Rooster News - <a asp-area="" asp-controller="News" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -2,17 +2,31 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-  position:absolute;
-  top:0px;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    position: absolute;
+    top: 0px;
+
 }
 
-.nav-item 
-{
-    font-size:20px;
-    
+
+#text-topic {
+    font-size: 20px;
+    font-family: 'Allerta Stencil';
+    color: yellow;
+}
+
+#text-topic.nav-item {
+    font-size: 20px;
+    font-family: 'Allerta Stencil';
+    color: yellow;
+}
+
+.nav-item {
+    font-size: 20px;
+    font-family: 'Allerta Stencil';
+    color: yellow;
 }
 
     .nav-item:hover {
@@ -23,6 +37,13 @@ a.navbar-brand {
 a {
   color: #0077cc;
 }
+
+a.nav-link.text-dark {
+    font-family: 'Allerta Stencil';
+    color:yellow;
+}
+
+
 
 .btn-primary {
   color: #fff;
@@ -147,6 +168,12 @@ button.accept-policy {
 .dd-menu-item:hover 
 {
     background-color:lightslategrey;
+}
+
+.nav-link
+{
+    font-family: 'Allerta Stencil';
+    color: yellow
 }
 
 
