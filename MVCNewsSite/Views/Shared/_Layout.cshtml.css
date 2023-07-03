@@ -43,7 +43,12 @@ a.nav-link.text-dark {
     color:yellow;
 }
 
+#nav-border
+{
 
+    border-color:black;
+
+}
 
 .btn-primary {
   color: #fff;

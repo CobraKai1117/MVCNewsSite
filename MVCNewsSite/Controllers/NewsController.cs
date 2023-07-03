@@ -36,10 +36,18 @@ namespace MVCNewsSite.Controllers
             _weatherService = weatherService;
             _maxMindClient = maxMindClient;
             this._config = config;
+            InitializeUserLocalConfigs();
+
+
+
+        }
+
+
+        private void InitializeUserLocalConfigs() 
+        {
             userLocalConfigs = getCountryInformation();
             Country = userLocalConfigs[1];
             Language = userLocalConfigs[0].ToLower();
-
 
         }
 
