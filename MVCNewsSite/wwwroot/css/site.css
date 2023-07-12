@@ -3,9 +3,7 @@ html {
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -25,5 +23,584 @@ body {
 
 *{
     box-sizing:border-box;
+
+}
+
+.nav-item {
+    font-size: 20px;
+    font-family: 'Allerta Stencil';
+    color: yellow;
+}
+
+    .nav-item:hover {
+        background-color: black;
+        border: 1px solid #bbb;
+    }
+
+
+.navbar-brand {
+    font-size: 30px;
+    color: yellow;
+    font-family: 'Allerta Stencil';
+    position: relative;
+    left: 10%;
+}
+
+.navbar-nav.authentication{
+    height:80px;
+}
+
+
+
+
+#text-topic {
+    font-size: 20px;
+    font-family: 'Allerta Stencil';
+    color: yellow;
+}
+
+    #text-topic.nav-item {
+        font-size: 20px;
+        font-family: 'Allerta Stencil';
+        color: yellow;
+    }
+
+
+
+@media (max-width:575px) and (min-width:402px) {
+    .navbar-toggler {
+        position: relative;
+        left: 14em;
+        bottom: 0.2em;
+    }
+
+    .navbar-brand{
+        font-size:25px;
+        left:18%;
+    }
+}
+
+@media (max-width:319px){
+    .navbar-brand{
+        font-size:20px;
+        left:30%;
+    }
+
+    .navbar-toggler{
+        position:relative;
+        left:3em;
+        bottom:0.2em;
+    }
+}
+
+@media (max-width:396px) and (min-width:320px) {
+    .navbar-toggler {
+        position: relative;
+        left: 13em;
+        bottom:0.2em;
+    }
+    .navbar-brand{
+        font-size:20px;
+        left:32%;
+
+    }
+}
+
+
+@media (min-width:397px) and (max-width:411px)  {
+    .navbar-toggler {
+        position: relative;
+        left: 13em;
+        bottom: 0.2em;
+    }
+
+    .navbar-brand {
+        font-size: 20px;
+        left: 30%;
+    }
+}
+
+@media (min-width:412px) and (max-width:444px) {
+    .navbar-toggler {
+        position: relative;
+        left: 18em;
+        bottom: 0.2em;
+    }
+
+    .navbar-brand {
+        font-size: 22px;
+        left: 30%;
+    }
+}
+
+@media (min-width:445px) and (max-width:475px) {
+    .navbar-toggler {
+        position: relative;
+        left: 20em;
+        bottom: 0.2em;
+    }
+
+    .navbar-brand {
+        font-size: 24px;
+        left: 30%;
+    }
+}
+
+@media (min-width:476px) and (max-width:500px) {
+    .navbar-toggler {
+        position: relative;
+        left: 22em;
+        bottom: 0.2em;
+    }
+
+    .navbar-brand {
+        font-size: 24px;
+        left: 30%;
+    }
+}
+
+@media (min-width:501px) and (max-width:530px) {
+    .navbar-toggler {
+        position: relative;
+        left: 23em;
+        bottom: 0.2em;
+    }
+
+    .navbar-brand {
+        font-size: 25px;
+        left: 30%;
+    }
+}
+
+
+@media (min-width:531px) and (max-width:575px) {
+    .navbar-toggler {
+        position: relative;
+        left: 25em;
+        bottom: 0.2em;
+    }
+
+    .navbar-brand {
+        font-size: 27px;
+        left: 30%;
+    }
+}
+
+
+@media (min-width:576px) and (max-width:627px){
+    .navbar-brand{
+        left:30%;
+    }
+
+   /* .nav-item.register{
+        position:relative;
+        left:-90px;
+    } */
+
+    /*.nav-link register{
+        position:relative;
+        left:-40px;
+    } */
+
+    .navbar-collapse{
+        left:20%;
+
+    }
+
+    .nav-item{
+        font-size:11px;
+        position:relative;
+        right:1%;
+    }
+
+
+
+    #text-topic.nav-item {
+        font-size: 20px !important;
+
+    }
+
+    .articleSearchBtn{
+        position:relative;
+        right:730%;
+        top:94%;
+    }
+
+    #articleSearch {
+        position: relative;
+        right: 200%;
+        top:70%;
+    }
+
+
+    .nav-item.register {
+        position: relative;
+        font-size:13px;
+        left: -180%;
+        top: 40%;
+    }
+
+    .nav-item.login {
+        position: relative;
+        font-size:13px;
+        left: -200%;
+        top: 40%;
+    }
+
+
+
+
+
+
+
+}
+
+@media(min-width:628px) and (max-width:685px)  {
+    .navbar-brand{
+        left:28%
+    }
+
+    .nav-item {
+        font-size: 13px;
+        position: relative;
+        left:15%
+    }
+
+
+    .articleSearchBtn {
+        position: relative;
+        right: 650%;
+        top: 95%;
+    }
+
+    #articleSearch {
+        position: relative;
+        right: 171%;
+        top: 70%;
+    }
+
+
+    .nav-item.register {
+        position: relative;
+        font-size: 13px;
+        left: -150%;
+        top: 40%;
+    }
+
+    .nav-item.login {
+        position: relative;
+        font-size: 13px;
+        left: -160%;
+        top: 40%;
+    }
+
+
+
+
+}
+
+@media(min-width:686px) and (max-width:710px){
+    .navbar-brand{
+        left:25%;
+    }
+
+    .nav-item {
+        font-size: 15px;
+        position:relative;
+        left:14%;
+    }
+
+    .articleSearchBtn {
+        position: relative;
+        right: 720%;
+        top: 90%;
+    }
+
+    #articleSearch {
+        position: relative;
+        right: 198%;
+        top: 65%;
+    }
+
+
+    .nav-item.register {
+        position: relative;
+        font-size: 15px;
+        left: -150%;
+        top: 40%;
+    }
+
+    .nav-item.login {
+        position: relative;
+        font-size: 15px;
+        left: -155%;
+        top: 40%;
+    }
+
+
+}
+
+
+@media(min-width:711px) and (max-width:819px) {
+    
+    .navbar-brand{
+        position:relative;
+        left:23%;
+    }
+    
+    .nav-item {
+        font-size:16px;
+        position:relative;
+        left:12%;
+    }
+
+    .articleSearchBtn {
+        position: relative;
+        right: 750%;
+        top: 95%;
+    }
+
+    #articleSearch {
+        position: relative;
+        right: 216%;
+        top: 70%;
+    }
+
+    .nav-item.register {
+        position: relative;
+        font-size: 15px;
+        left: -150%;
+        top: 40%;
+    }
+
+    .nav-item.login {
+        position: relative;
+        font-size: 15px;
+        left: -150%;
+        top: 40%;
+    }
+
+
+
+}
+
+
+
+@media(min-width:820px) and (max-width:961px){
+    .navbar-brand{
+        
+        left:22%;
+    }
+
+    .nav-item{
+        position:relative;
+        left:10%;
+    }
+
+    .articleSearchBtn {
+        position: relative;
+        right: 855%;
+        top: 86%;
+    }
+
+    #articleSearch {
+        position: relative;
+        right: 273%;
+        top: 65%;
+    }
+
+    .nav-item.register {
+        position: relative;
+        font-size: 18px;
+        left: -150%;
+        bottom:65%;
+    }
+
+    .nav-item.login {
+        position: relative;
+        font-size: 18px;
+        left: -150%;
+        bottom:65%;
+    }
+
+
+
+}
+
+@media(min-width:962px) and (max-width:1000px) {
+    .navbar-brand {
+        left: 22%;
+    }
+
+    .nav-item {
+        position: relative;
+        left: 12%;
+        
+    }
+
+    .articleSearchBtn {
+        position: relative;
+        right: 850%;
+        top: 85%;
+    }
+
+    #articleSearch {
+        position: relative;
+        right: 264%;
+        top: 65%;
+    }
+
+
+    .nav-item.register {
+        position: relative;
+        left:-125%;
+        bottom:65%;
+    }
+
+    .nav-item.login{
+        position:relative;
+        left:-125%;
+        bottom:65%;
+    }
+
+
+
+
+}
+
+@media(min-width:1001px) and (max-width:1100px) {
+    .navbar-brand {
+        left: 20%;
+    }
+
+    .nav-item{
+        position:relative;
+        left:10%;
+    }
+
+    .articleSearchBtn {
+        position: relative;
+        right: 868%;
+        top: 89%;
+    }
+
+    #articleSearch {
+        position: relative;
+        right: 272%;
+        top: 65%;
+    }
+
+    .nav-item.register {
+        position: relative;
+        left: -70%;
+        bottom:65%;
+    }
+
+    .nav-item.login {
+        position: relative;
+        left: -60%;
+        bottom:65%;
+    }
+
+
+}
+
+@media (min-width:1101px) and (max-width:1365px) {
+
+    .articleSearchBtn {
+        position: relative;
+        right: 925%;
+        top: 90%;
+    }
+
+    #articleSearch {
+        position: relative;
+        right: 290%;
+        top: 70%;
+    }
+}
+
+@media(min-width:1101px) and (max-width:1500px) {
+    .navbar-brand {
+        left: 15%;
+    }
+
+
+    .nav-item {
+        position: relative;
+        left: 5%;
+    }
+
+}
+
+@media(min-width:1101px) and (max-width:1186px){
+    .nav-item.register {
+        position: relative;
+        left: -45%;
+        bottom:65%;
+    }
+
+    .nav-item.login {
+        position: relative;
+        left: -40%;
+        bottom:65%;
+    }
+}
+
+
+@media (min-width:1501px) and (max-width:1519px) {
+
+    .navbar-brand {
+        left: 13%;
+    }
+
+
+    .nav-item {
+        position: relative;
+        left: 3%;
+    }
+
+
+
+}
+
+
+@media (min-width:1366px) and (max-width:1519px){
+    .articleSearchBtn{
+        position:relative;
+        left:100%;
+        top:30%;
+    }
+
+        #articleSearch {
+        position: relative;
+        left:25%;
+        top: 10%;
+    }
+}
+
+@media(min-width:1520px){
+    .navbar-brand{
+        left:12%;
+    }
+
+    .nav-item{
+        position:relative;
+        left:2%;
+    }
+
+
+    .articleSearchBtn {
+        position: relative;
+        left: 110%;
+        top: 30%;
+    }
+
+    #articleSearch {
+        position: relative;
+        left: 25%;
+        top: 10%;
+    }
+
 
 }

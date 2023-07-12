@@ -6,12 +6,13 @@
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <title>@ViewData["Title"] - Red Rooster News - Cock-A-Doodle-Doo</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MVCNewsSite.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Layout.css" asp-append-version="true" />
     <link href='https://fonts.googleapis.com/css?family=Allerta Stencil' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MVCNewsSite.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Layout.css" asp-append-version="true" />
+    <style>button.navbar-toggler {margin-left:30px;}</style>
     
 </head>
 <body>
@@ -50,15 +51,24 @@
                 <div class="container-fluid"style="background-color:limegreen;  position:relative; width:100vw;">
                    
                     <img src="~/Images/Red_Rooster.png" alt="Red Rooster Logo" style=" position:absolute; height:100%; width:auto; left:0%;" />
-                    &nbsp; <a class="navbar-brand" style="font-size:30px; font-family:'Allerta Stencil'; color:yellow; left:8%; position:relative;" asp-area="" asp-controller="News" asp-action="Index">Red Rooster News</a>
+                    &nbsp; 
+                    
+                    <div class="test">
+                    <a class="navbar-brand one two three four five" style="color:yellow;" id="RRTitleId testing" asp-area="" asp-controller="News" asp-action="Index">Red Rooster News</a>
+                    </div>
+                    
+
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" style="position:relative;top:0px" ;>
+                </button> <!-- Button that shows up when screen width is less than 576 -->
+
+
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" style="position:relative;bottom:10px;" ;>
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item" id="text-topic">
-                            <a class="nav-link" id="text-topic"; style="color:yellow;" asp-area="" asp-controller="News" asp-action="Sports">Sports</a>
+                        <li class="nav-item">
+                            <a class="nav-link"; style="color:yellow;" asp-area="" asp-controller="News" asp-action="Sports">Sports</a>
                         </li>
                         <li class="nav-item">
                                 <a class="nav-link" style="color:yellow;" style="color:yellow;" asp-area="" asp-controller="News" asp-action="Business">Business</a>
@@ -87,7 +97,9 @@
 
                         </li>
 
-                            <li ><input type="text" id="articleSearch" value="" style="margin-left:20px; margin-right:20px; margin-top:10px;" /> &nbsp; <button class="articleSearchBtn"> Search </button> </li>
+                            <li ><input type="text" id="articleSearch" value="" style="margin-left:20px; margin-right:20px; margin-top:10px;" /> </li>
+                                
+                                &nbsp;<li> <button class="articleSearchBtn"> Search </button> </li>
 
                        
 

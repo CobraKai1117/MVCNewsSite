@@ -5,11 +5,13 @@ for details on configuring this project to bundle and minify static web assets. 
 .navbar-nav 
 {
     position:relative;
-    left:8%;
+    left:10%;
     
 
 
 }
+
+
 
 a.navbar-brand {
     white-space: normal;
@@ -17,35 +19,15 @@ a.navbar-brand {
     word-break: break-all;
     position: relative;
     top: 0px;
-    left:10%;
-    width:auto;
-    height:auto;
-
+    left: 10%;
+    width: auto;
+    height: auto;
 }
 
 
-#text-topic {
-    font-size: 20px;
-    font-family: 'Allerta Stencil';
-    color: yellow;
-}
 
-#text-topic.nav-item {
-    font-size: 20px;
-    font-family: 'Allerta Stencil';
-    color: yellow;
-}
 
-.nav-item {
-    font-size: 20px;
-    font-family: 'Allerta Stencil';
-    color: yellow;
-}
 
-    .nav-item:hover {
-        background-color: darkgreyyyyyyyy;
-        border: 1px solid #bbb;
-    } 
 
 a {
   color: #0077cc;
@@ -193,6 +175,9 @@ button.accept-policy {
     font-family: 'Allerta Stencil';
     color: yellow
 }
+
+
+
 
 
 
